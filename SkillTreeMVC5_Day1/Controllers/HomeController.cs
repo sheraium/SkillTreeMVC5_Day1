@@ -1,14 +1,21 @@
-﻿using SkillTreeMVC5_Day1.ViewModels;
+﻿using SkillTreeMVC5_Day1.Models;
+using SkillTreeMVC5_Day1.Services;
+using SkillTreeMVC5_Day1.ViewModels;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web.Mvc;
-using SkillTreeMVC5_Day1.Models;
 
 namespace SkillTreeMVC5_Day1.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly LedgerService _ledgerService;
+
+        public HomeController()
+        {
+            _ledgerService = new LedgerService();
+        }
+
         public ActionResult Index()
         {
             var result = new List<MoneyViewModel>();
@@ -18,8 +25,7 @@ namespace SkillTreeMVC5_Day1.Controllers
             //    new MoneyViewModel() {MoneyType = "支出", Date = DateTime.Now, Amount = 8.01m},
             //};
 
-            var dbContext = new HomeworkModel();
-            foreach (var ledger in dbContext.Ledgers.ToList())
+            foreach (var ledger in _ledgerService.GetAll())
             {
                 result.Add(new MoneyViewModel()
                 {
@@ -38,8 +44,10 @@ namespace SkillTreeMVC5_Day1.Controllers
             {
                 case LedgerType.Income:
                     return "收入";
+
                 case LedgerType.Expenses:
                     return "支出";
+
                 default:
                     throw new ArgumentOutOfRangeException(nameof(ledgerType), ledgerType, null);
             }

@@ -140,6 +140,7 @@
     <Compile Include="Models\HomeworkModel.cs" />
     <Compile Include="Models\Ledger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\LedgerService.cs" />
     <Compile Include="ViewModels\MoneyViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -202,6 +203,7 @@
       <DependentUpon>201912080429241_Init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
