@@ -32,7 +32,7 @@ namespace SkillTreeMVC5_Day1.Migrations
                     Type = random.NextDouble() > 0.5 ? LedgerType.Income : LedgerType.Expenses,
                     Timestamp = new DateTime(date.Year, date.Month, date.Day, random.Next(6, 23), random.Next(0, 59),
                         random.Next(0, 59)),
-                    Amount = random.Next(1, 1000),
+                    Amount = random.Next(1, 10_000),
                 });
             }
 
