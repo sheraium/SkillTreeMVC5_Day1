@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using SkillTreeMVC5_Day1.Models;
 
 namespace SkillTreeMVC5_Day1.Controllers
 {
@@ -17,19 +18,31 @@ namespace SkillTreeMVC5_Day1.Controllers
             //    new MoneyViewModel() {MoneyType = "支出", Date = DateTime.Now, Amount = 8.01m},
             //};
 
-            var random = new Random(Guid.NewGuid().GetHashCode());
-
-            foreach (var i in Enumerable.Range(1, 100))
+            var dbContext = new HomeworkModel();
+            foreach (var ledger in dbContext.Ledgers.ToList())
             {
                 result.Add(new MoneyViewModel()
                 {
-                    MoneyType = random.NextDouble() > 0.5 ? "支出" : "收入",
-                    Date = DateTime.Now.AddDays(-100 + i),
-                    Amount = random.Next(1, 1000) * 10
+                    MoneyType = GetLedgerTypeName(ledger.Type),
+                    Date = ledger.Timestamp,
+                    Amount = ledger.Amount,
                 });
             }
 
             return View(result);
+        }
+
+        private string GetLedgerTypeName(LedgerType ledgerType)
+        {
+            switch (ledgerType)
+            {
+                case LedgerType.Income:
+                    return "收入";
+                case LedgerType.Expenses:
+                    return "支出";
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(ledgerType), ledgerType, null);
+            }
         }
 
         public ActionResult About()
