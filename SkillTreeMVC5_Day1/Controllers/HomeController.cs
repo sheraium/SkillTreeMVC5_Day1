@@ -1,5 +1,4 @@
 ﻿using SkillTreeMVC5_Day1.Models;
-using SkillTreeMVC5_Day1.Repository;
 using SkillTreeMVC5_Day1.Services;
 using SkillTreeMVC5_Day1.ViewModels;
 using System;
@@ -12,9 +11,9 @@ namespace SkillTreeMVC5_Day1.Controllers
     {
         private readonly LedgerService _ledgerService;
 
-        public HomeController()
+        public HomeController(LedgerService ledgerService)
         {
-            _ledgerService = new LedgerService(new UnitOfWork());
+            _ledgerService = ledgerService;
         }
 
         public ActionResult Index()
