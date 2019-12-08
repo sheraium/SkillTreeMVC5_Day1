@@ -1,21 +1,22 @@
-﻿using System.Collections.Generic;
+﻿using SkillTreeMVC5_Day1.Models;
+using SkillTreeMVC5_Day1.Repository;
+using System.Collections.Generic;
 using System.Linq;
-using SkillTreeMVC5_Day1.Models;
 
 namespace SkillTreeMVC5_Day1.Services
 {
     public class LedgerService
     {
-        private readonly HomeworkModel _dbContext;
+        private readonly Repository<Ledger> _ledgerRepository;
 
-        public LedgerService()
+        public LedgerService(IUnitOfWork unitOfWork)
         {
-            _dbContext = new HomeworkModel();
+            _ledgerRepository = new Repository<Ledger>(unitOfWork);
         }
 
         public IList<Ledger> GetAll()
         {
-            return _dbContext.Ledgers.ToList();
+            return _ledgerRepository.LookupAll().ToList();
         }
     }
 }

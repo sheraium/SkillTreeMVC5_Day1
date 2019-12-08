@@ -1,4 +1,5 @@
 ﻿using SkillTreeMVC5_Day1.Models;
+using SkillTreeMVC5_Day1.Repository;
 using SkillTreeMVC5_Day1.Services;
 using SkillTreeMVC5_Day1.ViewModels;
 using System;
@@ -13,17 +14,12 @@ namespace SkillTreeMVC5_Day1.Controllers
 
         public HomeController()
         {
-            _ledgerService = new LedgerService();
+            _ledgerService = new LedgerService(new UnitOfWork());
         }
 
         public ActionResult Index()
         {
             var result = new List<MoneyViewModel>();
-            //{
-            //    new MoneyViewModel() {MoneyType = "支出", Date = DateTime.Now, Amount = 300},
-            //    new MoneyViewModel() {MoneyType = "支出", Date = DateTime.Now, Amount = 1600},
-            //    new MoneyViewModel() {MoneyType = "支出", Date = DateTime.Now, Amount = 8.01m},
-            //};
 
             foreach (var ledger in _ledgerService.GetAll())
             {
