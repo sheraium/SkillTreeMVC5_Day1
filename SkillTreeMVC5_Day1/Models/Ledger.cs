@@ -4,6 +4,7 @@ namespace SkillTreeMVC5_Day1.Models
 {
     public class Ledger
     {
+        public int Id { get; set; }
         public LedgerType Type { get; set; }
         public DateTime Timestamp { get; set; }
         public decimal Amount { get; set; }

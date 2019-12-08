@@ -20,7 +20,19 @@ namespace SkillTreeMVC5_Day1.Models
         // Add a DbSet for each entity type that you want to include in your model. For more information 
         // on configuring and using a Code First model, see http://go.microsoft.com/fwlink/?LinkId=390109.
 
-        // public virtual DbSet<MyEntity> MyEntities { get; set; }
+        //public virtual DbSet<MyEntity> MyEntities { get; set; }
+        public virtual DbSet<Ledger> Ledgers { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Ledger>().HasKey(a => a.Id);
+            modelBuilder.Entity<Ledger>().Property(a => a.Type).IsRequired();
+            modelBuilder.Entity<Ledger>().Property(a => a.Timestamp).IsRequired();
+            modelBuilder.Entity<Ledger>().Property(a => a.Amount).IsRequired();
+            modelBuilder.Entity<Ledger>().Property(a => a.Remark).HasMaxLength(250);
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 
     //public class MyEntity
