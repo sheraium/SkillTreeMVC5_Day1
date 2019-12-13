@@ -11,7 +11,7 @@ namespace SkillTreeMVC5_Day1.Models
     {
         public Guid Id { get; set; }
 
-        public int Categoryyy { get; set; }
+        public CategoryType Categoryyy { get; set; }
 
         public int Amounttt { get; set; }
 
@@ -20,5 +20,11 @@ namespace SkillTreeMVC5_Day1.Models
         [Required]
         [StringLength(500)]
         public string Remarkkk { get; set; }
+    }
+
+    public enum CategoryType
+    {
+        支出 = 0,
+        收入 = 1,
     }
 }
