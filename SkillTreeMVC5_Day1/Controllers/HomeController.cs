@@ -10,6 +10,13 @@ namespace SkillTreeMVC5_Day1.Controllers
     {
         public ActionResult Index()
         {
+            var result = GetAll();
+
+            return View(result);
+        }
+
+        private static List<MoneyViewModel> GetAll()
+        {
             var result = new List<MoneyViewModel>();
             //{
             //    new MoneyViewModel() {MoneyType = "支出", Date = DateTime.Now, Amount = 300},
@@ -29,7 +36,7 @@ namespace SkillTreeMVC5_Day1.Controllers
                 });
             }
 
-            return View(result);
+            return result;
         }
 
         public ActionResult About()
