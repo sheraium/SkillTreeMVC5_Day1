@@ -1,11 +1,16 @@
-﻿using System.Web.Mvc;
-using SkillTreeMVC5_Day1.Services;
+﻿using SkillTreeMVC5_Day1.Services;
+using System.Web.Mvc;
 
 namespace SkillTreeMVC5_Day1.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly LedgerService _ledgerService = new LedgerService();
+        private readonly LedgerService _ledgerService;
+
+        public HomeController(LedgerService ledgerService)
+        {
+            _ledgerService = ledgerService;
+        }
 
         public ActionResult Index()
         {

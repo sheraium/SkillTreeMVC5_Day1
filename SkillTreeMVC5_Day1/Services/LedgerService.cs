@@ -10,9 +10,8 @@ namespace SkillTreeMVC5_Day1.Services
     {
         private Repository<AccountBook> _accountBookRepository;
 
-        public LedgerService()
+        public LedgerService(IUnitOfWork unitOfWork)
         {
-            var unitOfWork = new UnitOfWork();
             _accountBookRepository = new Repository<AccountBook>(unitOfWork);
         }
         public List<MoneyViewModel> GetAll()
